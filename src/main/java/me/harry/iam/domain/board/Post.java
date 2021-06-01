@@ -1,12 +1,9 @@
 package me.harry.iam.domain.board;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.harry.iam.domain.BaseEntity;
@@ -47,4 +44,9 @@ public class Post extends BaseEntity {
 
     @Column(length = 512)
     private String content;
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

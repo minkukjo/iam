@@ -34,11 +34,15 @@ public class BoardService {
         return postRepository.findById(id).orElseThrow(NotFoundException.POST);
     }
 
-    public Post editPost() {
-        return null;
+    @Transactional
+    public Post editPost(Long id, PostDTO postDTO) throws ResponseException {
+        Post post = postRepository.findById(id).orElseThrow(NotFoundException.POST);
+        post.update(postDTO.getTitle(), postDTO.getContent());
+        return post;
     }
 
-    public void deletePost() {
-
+    @Transactional
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
     }
 }
