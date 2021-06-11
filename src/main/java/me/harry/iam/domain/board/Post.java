@@ -45,6 +45,12 @@ public class Post extends BaseEntity {
     @Column(length = 512)
     private String content;
 
+    @Column
+    private Long views;
+
+    @Column
+    private Long likes;
+
     public void update(String title, String content) {
         this.title = title;
         this.content = content;

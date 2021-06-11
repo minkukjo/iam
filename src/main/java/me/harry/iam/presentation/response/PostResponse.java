@@ -1,5 +1,6 @@
 package me.harry.iam.presentation.response;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,11 +21,23 @@ public class PostResponse {
     private String title;
     private String content;
 
+    private Long views;
+
+    private Long likes;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
     public PostResponse(Post post) {
         this.id = post.getId();
         this.writer = post.getAuthor();
         this.comments = post.getComments();
         this.title = post.getTitle();
         this.content = post.getContent();
+        this.views = post.getViews();
+        this.likes = post.getLikes();
+        this.createdAt = post.getCreatedAt();
+        this.updatedAt = post.getUpdatedAt();
     }
 }

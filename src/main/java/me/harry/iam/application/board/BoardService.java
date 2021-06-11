@@ -1,12 +1,13 @@
 package me.harry.iam.application.board;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import me.harry.iam.domain.board.Post;
 import me.harry.iam.infrastructure.PostRepository;
 import me.harry.iam.presentation.dto.PostDTO;
 import me.harry.iam.presentation.exception.ResponseException;
 import me.harry.iam.presentation.exception.e4xx.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,8 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public List<Post> readPost() {
-        return postRepository.findAll();
+    public Page<Post> readPost(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)

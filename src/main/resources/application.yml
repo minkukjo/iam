@@ -1,11 +1,9 @@
 spring:
-  jackson:
-    property-naming-strategy: SNAKE_CASE
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true

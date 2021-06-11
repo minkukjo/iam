@@ -1,13 +1,15 @@
 package me.harry.iam.presentation;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import me.harry.iam.application.board.BoardService;
 import me.harry.iam.presentation.dto.PostDTO;
 import me.harry.iam.presentation.exception.ResponseException;
 import me.harry.iam.presentation.response.OkResponse;
 import me.harry.iam.presentation.response.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,11 +36,8 @@ public class BoardController {
     }
 
     @GetMapping("post")
-    public List<PostResponse> readAllPost() {
-        return boardService.readPost()
-                .stream()
-                .map(PostResponse::new)
-                .collect(Collectors.toList());
+    public Page<PostResponse> readAllPost(@PageableDefault(size = 20, direction = Sort.Direction.ASC) Pageable pageable) {
+        return boardService.readPost(pageable).map(PostResponse::new);
     }
 
     @GetMapping("post/{id}")
