@@ -1,9 +1,6 @@
 package me.harry.iam.domain.board;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.harry.iam.domain.BaseEntity;
@@ -18,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder

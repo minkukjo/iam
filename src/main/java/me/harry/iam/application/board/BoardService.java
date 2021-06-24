@@ -1,20 +1,21 @@
 package me.harry.iam.application.board;
 
-import lombok.AllArgsConstructor;
 import me.harry.iam.domain.board.Post;
 import me.harry.iam.infrastructure.PostRepository;
 import me.harry.iam.presentation.dto.PostDTO;
 import me.harry.iam.presentation.exception.ResponseException;
 import me.harry.iam.presentation.exception.e4xx.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@AllArgsConstructor
 public class BoardService {
-    private final PostRepository postRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @Transactional
     public Post writePost(PostDTO postDTO) {

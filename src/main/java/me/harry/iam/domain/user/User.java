@@ -2,10 +2,7 @@ package me.harry.iam.domain.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.harry.iam.domain.BaseEntity;
@@ -22,7 +19,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder

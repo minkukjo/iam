@@ -2,34 +2,31 @@ package me.harry.iam.presentation.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import me.harry.iam.domain.board.Comment;
 import me.harry.iam.domain.board.Post;
 import me.harry.iam.domain.user.User;
 
 @Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class PostResponse {
-    private Long id;
-    private User writer;
-    private List<Comment> comments;
-    private String title;
-    private String content;
+@Getter
+public class PostResponse extends OkResponse {
+    private final Long id;
+    private final User writer;
+    private final List<Comment> comments;
+    private final String title;
+    private final String content;
 
-    private Long views;
+    private final Long views;
 
-    private Long likes;
+    private final Long likes;
 
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
 
-    private LocalDateTime updatedAt;
+    private final LocalDateTime updatedAt;
 
     public PostResponse(Post post) {
+        super();
         this.id = post.getId();
         this.writer = post.getAuthor();
         this.comments = post.getComments();
