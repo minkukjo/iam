@@ -2,7 +2,6 @@ package me.harry.iam.domain.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.harry.iam.domain.BaseEntity;
@@ -21,7 +20,6 @@ import javax.persistence.Table;
 
 @NoArgsConstructor
 @Getter
-@Builder
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {

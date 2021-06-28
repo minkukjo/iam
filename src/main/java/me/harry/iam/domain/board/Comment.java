@@ -1,6 +1,5 @@
 package me.harry.iam.domain.board;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.harry.iam.domain.BaseEntity;
@@ -17,7 +16,6 @@ import javax.persistence.Table;
 
 @NoArgsConstructor
 @Getter
-@Builder
 @Entity
 @Table(name = "comments")
 public class Comment extends BaseEntity {

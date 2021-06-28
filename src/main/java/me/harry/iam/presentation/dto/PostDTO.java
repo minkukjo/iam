@@ -2,17 +2,20 @@ package me.harry.iam.presentation.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import me.harry.iam.domain.board.Type;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Builder
 @Getter
-@NoArgsConstructor
 public class PostDTO {
 
-    @NotBlank
+    @NotNull
     private String title;
 
+    @NotNull
     private String content;
+
+    @NotNull
+    private Type type;
 }

@@ -19,10 +19,7 @@ public class BoardService {
 
     @Transactional
     public Post writePost(PostDTO postDTO) {
-        Post post = Post.builder()
-                .title(postDTO.getTitle())
-                .content(postDTO.getContent())
-                .build();
+        Post post = Post.of(postDTO.getTitle(), postDTO.getContent(), postDTO.getType());
         return postRepository.save(post);
     }
 
