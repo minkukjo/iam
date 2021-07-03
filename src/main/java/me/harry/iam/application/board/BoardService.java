@@ -2,6 +2,7 @@ package me.harry.iam.application.board;
 
 import me.harry.iam.domain.board.Post;
 import me.harry.iam.infrastructure.PostRepository;
+import me.harry.iam.infrastructure.aop.Logging;
 import me.harry.iam.presentation.dto.PostDTO;
 import me.harry.iam.presentation.exception.ResponseException;
 import me.harry.iam.presentation.exception.e4xx.NotFoundException;
@@ -23,11 +24,13 @@ public class BoardService {
         return postRepository.save(post);
     }
 
+
     @Transactional(readOnly = true)
     public Page<Post> readPost(Pageable pageable) {
         return postRepository.findAll(pageable);
     }
 
+    @Logging
     @Transactional(readOnly = true)
     public Post readPost(Long id) throws ResponseException {
         return postRepository.findById(id).orElseThrow(NotFoundException.POST);
