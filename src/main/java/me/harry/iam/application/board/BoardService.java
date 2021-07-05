@@ -1,6 +1,7 @@
 package me.harry.iam.application.board;
 
 import me.harry.iam.domain.board.Post;
+import me.harry.iam.domain.board.Type;
 import me.harry.iam.infrastructure.PostRepository;
 import me.harry.iam.infrastructure.aop.Logging;
 import me.harry.iam.presentation.dto.PostDTO;
@@ -26,8 +27,8 @@ public class BoardService {
 
 
     @Transactional(readOnly = true)
-    public Page<Post> readPost(Pageable pageable) {
-        return postRepository.findAll(pageable);
+    public Page<Post> readPost(Type type, Pageable pageable) {
+        return postRepository.findAllByType(type, pageable);
     }
 
     @Logging
@@ -39,7 +40,7 @@ public class BoardService {
     @Transactional
     public Post editPost(Long id, PostDTO postDTO) throws ResponseException {
         Post post = postRepository.findById(id).orElseThrow(NotFoundException.POST);
-        post.update(postDTO.getTitle(), postDTO.getContent());
+        post.update(postDTO.getTitle(), postDTO.getContent(), postDTO.getType());
         return post;
     }
 

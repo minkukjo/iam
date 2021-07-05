@@ -1,8 +1,10 @@
 package me.harry.iam.presentation;
 
 import me.harry.iam.application.board.BoardService;
+import me.harry.iam.domain.board.Type;
 import me.harry.iam.presentation.dto.PostDTO;
 import me.harry.iam.presentation.exception.ResponseException;
+import me.harry.iam.presentation.exception.e4xx.NotFoundException;
 import me.harry.iam.presentation.response.OkResponse;
 import me.harry.iam.presentation.response.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -36,8 +39,11 @@ public class BoardController {
     }
 
     @GetMapping("post")
-    public Page<PostResponse> readAllPost(@PageableDefault(size = 20, direction = Sort.Direction.ASC) Pageable pageable) {
-        return boardService.readPost(pageable).map(PostResponse::new);
+    public Page<PostResponse> readAllPost(@RequestParam Type type, @PageableDefault(size = 20, direction = Sort.Direction.ASC) Pageable pageable) throws ResponseException {
+        if (type == null) {
+            throw NotFoundException.TYPE.get();
+        }
+        return boardService.readPost(type, pageable).map(PostResponse::new);
     }
 
     @GetMapping("post/{id}")

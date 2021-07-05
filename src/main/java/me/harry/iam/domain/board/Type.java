@@ -3,6 +3,7 @@ package me.harry.iam.domain.board;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.stream.Stream;
+import org.springframework.core.convert.converter.Converter;
 
 import javax.persistence.AttributeConverter;
 
@@ -46,6 +47,13 @@ public enum Type {
                     .filter(c -> c.value == dbData)
                     .findFirst()
                     .orElseThrow(IllegalArgumentException::new);
+        }
+    }
+
+    public static class StringToEnumConverter implements Converter<String, Type> {
+        @Override
+        public Type convert(String source) {
+            return Type.fromString(source);
         }
     }
 

@@ -5,7 +5,8 @@ import me.harry.iam.presentation.exception.ResponseException;
 import org.springframework.http.HttpStatus;
 
 public enum NotFoundException implements ResponseDefinition {
-    POST(HttpStatus.BAD_REQUEST, NotFoundException.NOT_FOUND_CODE, "Not found post");
+    POST(HttpStatus.BAD_REQUEST, NotFoundException.NOT_FOUND_CODE, "Not found post"),
+    TYPE(HttpStatus.BAD_REQUEST, NotFoundException.NOT_FOUND_CODE, "Not found type");
 
     private static final int NOT_FOUND_CODE = 404;
 
