@@ -39,11 +39,12 @@ public class BoardController {
     }
 
     @GetMapping("post")
-    public Page<PostResponse> readAllPost(@RequestParam Type type, @PageableDefault(size = 20, direction = Sort.Direction.ASC) Pageable pageable) throws ResponseException {
+    public Page<PostResponse> readAllPost(@RequestParam Type type, @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) throws ResponseException {
         if (type == null) {
             throw NotFoundException.TYPE.get();
         }
         return boardService.readPost(type, pageable).map(PostResponse::new);
+
     }
 
     @GetMapping("post/{id}")
