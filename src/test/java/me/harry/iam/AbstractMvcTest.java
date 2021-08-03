@@ -27,7 +27,7 @@ public abstract class AbstractMvcTest {
     void setup() {
         this.mockMvc = MockMvcBuilders
                 .webAppContextSetup(ctx)
-                .addFilters(new CharacterEncodingFilter("UTF-8",true))
+                .addFilters(new CharacterEncodingFilter("UTF-8", true))
                 .alwaysDo(print())
                 .build();
     }
